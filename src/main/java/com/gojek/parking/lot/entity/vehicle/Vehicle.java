@@ -4,6 +4,7 @@ public abstract class Vehicle {
 
 	protected String registrationNumber;
 	protected String color;
+	protected VehicleSize size;
 
 	/**
 	 * @return the registrationNumber
@@ -32,6 +33,20 @@ public abstract class Vehicle {
 	 */
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	/**
+	 * @return the size
+	 */
+	public VehicleSize getSize() {
+		return size;
+	}
+
+	/**
+	 * @param size the size to set
+	 */
+	public void setSize(VehicleSize size) {
+		this.size = size;
 	}
 
 }

@@ -17,7 +17,7 @@ public class ParkingCommandManager {
 		return INSTANCE;
 	}
 
-	public ICommand getCommand(String command) {
-		return commandMap.get(ParkingCommands.mapToComamnd(command));
+	public ICommand getCommand(String inputCommand) {
+		return commandMap.get(ParkingCommands.mapToComamnd(inputCommand));
 	}
 }

@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.gojek.parking.lot.exception.InvalidInputException;
+import com.gojek.parking.lot.exception.ParkingLotException;
 import com.gojek.parking.lot.exception.ParkingErrorStatus;
 import com.gojek.parking.lot.exception.VerifyException;
 
@@ -28,7 +28,7 @@ public enum ParkingCommands {
 	public static ParkingCommands mapToComamnd(String inputCommand) {
 		ParkingCommands command = parkingCommandMap.get(inputCommand) != null ? parkingCommandMap.get(inputCommand) : null;
 		VerifyException.verifyInput(null == command, () -> {
-			throw new InvalidInputException(ParkingErrorStatus.INVALID_INPUT_COMMAND);
+			throw new ParkingLotException(ParkingErrorStatus.INVALID_INPUT_COMMAND);
 		});
 		return command;
 	}
