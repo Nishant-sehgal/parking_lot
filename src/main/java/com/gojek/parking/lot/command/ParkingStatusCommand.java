@@ -1,5 +1,6 @@
 package com.gojek.parking.lot.command;
 
+import static com.gojek.parking.lot.constant.Messages.PARKING_CURRENT_STATUS_BODY_MSG;
 import static com.gojek.parking.lot.constant.Messages.PARKING_CURRENT_STATUS_HEADER_MSG;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class ParkingStatusCommand implements ICommand {
 			List<Slot> slots = parkingManager.status();
 			writer.write(PARKING_CURRENT_STATUS_HEADER_MSG);
 			for (Slot pSlot : slots) {
-				writer.write(String.format(PARKING_CURRENT_STATUS_HEADER_MSG, pSlot.getSlotNumber(),
+				writer.write(String.format(PARKING_CURRENT_STATUS_BODY_MSG, pSlot.getSlotNumber(),
 						pSlot.getVehicle().getRegistrationNumber(), pSlot.getVehicle().getColor()));
 			}
 		} catch (ParkingLotException e) {

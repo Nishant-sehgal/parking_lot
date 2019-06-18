@@ -38,10 +38,11 @@ public class ParkingManager implements IParkingManager {
 			if (!slot.isOccupied()) {
 				assignSlot(slot, vehicle);
 				availableSlot = slot;
+				break;
 			}
 		}
 
-		VerifyException.verifyInput(null == parkingSlots || parkingSlots.isEmpty(), () -> {
+		VerifyException.verifyInput(null == availableSlot, () -> {
 			throw new ParkingLotException(PARKING_LOT_FULL);
 		});
 
@@ -65,6 +66,7 @@ public class ParkingManager implements IParkingManager {
 				slot.setOccupied(false);
 				slot.setVehicle(null);
 				unparkSlot = slot;
+				break;
 			}
 		}
 		VerifyException.verifyInput(null == parkingSlots || parkingSlots.isEmpty(), () -> {
@@ -130,6 +132,7 @@ public class ParkingManager implements IParkingManager {
 		for (Slot slot : parkingSlots) {
 			if (slot.isOccupied() && slot.getVehicle().getRegistrationNumber().equalsIgnoreCase(registrationNumber)) {
 				foundSlot = slot;
+				break;
 			}
 		}
 		VerifyException.verifyInput(null == foundSlot, () -> {

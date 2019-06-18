@@ -2,7 +2,7 @@ package com.gojek.parking.lot.command;
 
 import java.util.List;
 
-import com.gojek.parking.lot.entity.vehicle.Slot;
+import com.gojek.parking.lot.entity.vehicle.Vehicle;
 import com.gojek.parking.lot.exception.ParkingLotException;
 import com.gojek.parking.lot.manager.IParkingManager;
 import com.gojek.parking.lot.manager.ParkingManager;
@@ -18,16 +18,15 @@ public class RegistrationDetailsViaColorCommand implements ICommand {
 		IParkingManager parkingManager = ParkingManager.getInstance();
 		Writer writer = WriterFactory.getInstance().getWriter(WriterType.CONSOLE);
 		try {
-			List<Slot> slots = parkingManager.getSlotDetailsViaColor(color);
+			List<Vehicle> vehicles = parkingManager.getVehicleDetailsViaColor(color);
 			StringBuilder details = new StringBuilder();
-			for (int i = 0; i < slots.size(); i++) {
-				details.append(slots.get(i).getSlotNumber());
-				if (i != slots.size() - 1) {
+			for (int i = 0; i < vehicles.size(); i++) {
+				details.append(vehicles.get(i).getRegistrationNumber());
+				if (i != vehicles.size() - 1) {
 					details.append(", ");
 				}
 			}
-			writer.write(details.toString());
-			writer.write("");
+			writer.write(details.toString());			
 		} catch (ParkingLotException e) {
 			writer.write(String.format(e.getError().getMsg(), color));
 		}

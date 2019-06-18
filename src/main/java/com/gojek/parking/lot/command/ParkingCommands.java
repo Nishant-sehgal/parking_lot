@@ -4,8 +4,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.gojek.parking.lot.exception.ParkingLotGeneralException;
 import com.gojek.parking.lot.exception.ParkingErrorStatus;
+import com.gojek.parking.lot.exception.ParkingLotException;
 import com.gojek.parking.lot.exception.VerifyException;
 
 public enum ParkingCommands {
@@ -17,7 +17,7 @@ public enum ParkingCommands {
 									"slot_number_for_registration_number");
 
 	private static Map<String, ParkingCommands> parkingCommandMap = Collections
-			.unmodifiableMap(initializeErrorMapping());
+			.unmodifiableMap(initializeMapping());
 
 	private String commandName;
 
@@ -28,15 +28,15 @@ public enum ParkingCommands {
 	public static ParkingCommands mapToComamnd(String inputCommand) {
 		ParkingCommands command = parkingCommandMap.get(inputCommand) != null ? parkingCommandMap.get(inputCommand) : null;
 		VerifyException.verifyInput(null == command, () -> {
-			throw new ParkingLotGeneralException(ParkingErrorStatus.INVALID_INPUT_COMMAND);
+			throw new ParkingLotException(ParkingErrorStatus.INVALID_INPUT_COMMAND);
 		});
 		return command;
 	}
 
-	private static Map<String, ParkingCommands> initializeErrorMapping() {
+	private static Map<String, ParkingCommands> initializeMapping() {
 		Map<String, ParkingCommands> errorMappingMap = new HashMap<>();
 		for (ParkingCommands command : ParkingCommands.values()) {
-			errorMappingMap.put(command.name(), command);
+			errorMappingMap.put(command.getCommandName(), command);
 		}
 		return errorMappingMap;
 	}
