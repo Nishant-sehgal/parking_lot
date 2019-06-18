@@ -3,8 +3,8 @@ package com.gojek.parking.lot.entity.vehicle;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gojek.parking.lot.exception.ParkingLotException;
 import com.gojek.parking.lot.exception.ParkingErrorStatus;
+import com.gojek.parking.lot.exception.ParkingLotGeneralException;
 import com.gojek.parking.lot.exception.VerifyException;
 
 public class ParkingSlot {
@@ -22,7 +22,7 @@ public class ParkingSlot {
 
 	public int createParkingSlots(int noOfSlots) {
 		VerifyException.verifyInput(noOfSlots<=0, () -> {
-			throw new ParkingLotException(ParkingErrorStatus.INVALID_INPUT_PARKING_LOT);
+			throw new ParkingLotGeneralException(ParkingErrorStatus.INVALID_INPUT_PARKING_LOT);
 		});
 		
 		for (int i = 1; i <= noOfSlots; i++) {
@@ -30,4 +30,12 @@ public class ParkingSlot {
 		}
 		return parkingSlots.size();
 	}
+
+	/**
+	 * @return the parkingSlots
+	 */
+	public List<Slot> getParkingSlots() {
+		return parkingSlots;
+	}
+	
 }
