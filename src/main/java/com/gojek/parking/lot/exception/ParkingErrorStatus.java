@@ -11,8 +11,7 @@ public enum ParkingErrorStatus {
 	NO_SLOT_FOUND("P1007","Not found","no slot found"),
 	NO_SLOT_ALLOCATION("P1008","No Slot Allocated","all slots are free no allocation done."),
     NO_VEHICLE_AVAILABLE_FOR_COLOR("P1009","No Vehicle Available With color %s","No vehicle available for given color."),
-	NO_SLOT_AVAILABLE_FOR_COLOR("P1010","No Slot Allocated With color %s","No Slot available for given color."); 
-
+	NO_SLOT_AVAILABLE_FOR_COLOR("P1010","No Slot Allocated With color %s","No Slot available for given color.");
 	private String code;
 	private String msg;
 	private String description;

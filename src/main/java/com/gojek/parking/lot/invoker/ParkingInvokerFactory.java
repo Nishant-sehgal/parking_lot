@@ -12,7 +12,7 @@ public class ParkingInvokerFactory {
 	}
 
 	public ParkingInvoker getInvoker(String[] args) {
-		if (args.length > 0) {
+		if (null != args && args.length > 0) {
 			return new FileInvoker(args[0]);
 		}
 		return new CommandLineInvoker();
