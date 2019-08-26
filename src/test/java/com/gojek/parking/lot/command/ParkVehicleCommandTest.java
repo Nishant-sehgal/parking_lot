@@ -5,12 +5,13 @@ import org.junit.Test;
 
 import com.gojek.parking.lot.exception.ParkingLotException;
 
-public class CreateParkingLotCommandTest {
+public class ParkVehicleCommandTest {
 
 	private ICommand command = null;
 	@Before
 	public void setup(){
-		command = new CreateParkingLotCommand();
+		new CreateParkingLotCommand().execute(new String[]{"create_parking_lot","1"});
+		command = new ParkVehicleCommand();
 	}
 	
 	@Test(expected=ParkingLotException.class)
@@ -22,11 +23,11 @@ public class CreateParkingLotCommandTest {
 		command.execute(new String[]{});
 	}
 	@Test(expected=ParkingLotException.class)
-	public void testCreateSizeGreaterThan1(){
-		command.execute(new String[]{"create_parking_lot","1","2"});
+	public void testCreateSizeLessThan3(){		
+		command.execute(new String[]{"park","KA-01-P-333"});
 	}
 	@Test
 	public void testCreate(){
-		command.execute(new String[]{"create_parking_lot","6"});
+		command.execute(new String[]{"park","KA-01-P-333","White"});
 	}
 }
